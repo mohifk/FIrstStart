@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .first_view_file import first_http_test,first_json_test
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path ('first_http',first_http_test),
+    path ('first_json',first_json_test)
 ]
