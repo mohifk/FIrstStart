@@ -3,10 +3,12 @@ from operator import index
 from django.urls import path
 from website.views import *
 
+app_name='website'
+
 urlpatterns = [
 
-    path ('',Home_page_view),
-    path ('about/',about_view),
-    path ('contact/',contact_view),
-    path ('elements/',elements_view)
+    path ('',Home_page_view,name='index'),
+    path ('about/',about_view,name='about'),
+    path ('contact/',contact_view,name='contact'),
+    path ('elements/',elements_view,name='elements')
 ]
