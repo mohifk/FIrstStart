@@ -6,4 +6,6 @@ def about_view(request):
     return render(request ,'.\website_temp\\about.html')
 def contact_view(request):
     return render(request,'.\website_temp\contact.html')
+def elements_view(request):
+    return render(request,'.\website_temp\elements.html')
     
