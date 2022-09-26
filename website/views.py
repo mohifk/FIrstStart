@@ -8,4 +8,6 @@ def contact_view(request):
     return render(request,'.\website_temp\contact.html')
 def elements_view(request):
     return render(request,'.\website_temp\elements.html')
+def test_view(request):
+    return render(request,'.\website_temp\\test.html',{'name':'mohi','lastname':'fk'})
     
