@@ -8,3 +8,10 @@ class Contact(models.Model):
     created_date= models.DateTimeField(auto_now_add=True)
     update_date=models.DateTimeField(auto_now=True)
 # Create your models here.
+    class Meta :
+        ordering=['-created_date']
+        #verbose_name= 'پست'
+        #verbose_name_plural='پستها'
+# Create your models here.
+    def __str__(self):
+        return self.name
