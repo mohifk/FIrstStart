@@ -15,3 +15,5 @@ class post(models.Model):
     create_date= models.DateTimeField(auto_now_add=True)
     update_date= models.DateTimeField(auto_now=True)
 # Create your models here.
+    def __str__(self):
+        return "{} :::: ID is : {}".format(self.title,self.id)
