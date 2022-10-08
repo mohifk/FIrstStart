@@ -1,5 +1,5 @@
-from multiprocessing import context
-from django.shortcuts import render
+
+from django.shortcuts import render,get_object_or_404
 from blog.models import post
 def blog_view(request):
     posts=post.objects.filter(status=1)
@@ -8,7 +8,10 @@ def blog_view(request):
 def blog_single(request):
     context={'name':'mohi','lastname':'fk'}
     return render(request,'blog/blog-single.html',context)
-def test(request,name,family,age):
-    context={'name':name, 'family':family,'age':age}
+
+def test(request,pid):
+    #Post=post.objects.get(id=pid)
+    Post=get_object_or_404(post,pk=pid)
+    context={'post':Post}
     return render(request,'test.html',context)
 # Create your views here.
