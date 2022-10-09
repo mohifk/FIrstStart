@@ -1,15 +1,19 @@
 
+from email.policy import default
 from tabnanny import verbose
 from django.db import models
-
-
+from django.contrib.auth.models import User
+class category(models.Model):
+    name=models.CharField(max_length=255)
+    def __str__(self) -> str:
+        return self.name
 class post(models.Model):
-    #image=
-    #author=
+    image=models.ImageField(upload_to='media/blog/',default='blog/defult.jpg')
+    author = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     title=models.CharField(max_length=255)
     content= models.TextField()
     #tage=
-    #category=
+    category=models.ManyToManyField(category)
     count_views= models.IntegerField(default=0)
     status= models.BooleanField(default=False)
     publish_date= models.DateTimeField(null=True)
