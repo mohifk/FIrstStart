@@ -27,3 +27,6 @@ class post(models.Model):
 # Create your models here.
     def __str__(self):
         return "{} :::: ID is : {}".format(self.title,self.id)
+
+    def snippets(self):
+        return self.content[:10]
