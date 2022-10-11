@@ -26,7 +26,7 @@ class post(models.Model):
         #verbose_name_plural='پستها'
 # Create your models here.
     def __str__(self):
-        return "{} :::: ID is : {}".format(self.title,self.id)
-
+        #return "{} id {}".format(self.id,self.id)
+        return '%d'%self.id
     def snippets(self):
-        return self.content[:10]
+        return self.content[:10]+'...'

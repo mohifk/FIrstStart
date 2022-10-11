@@ -70,15 +70,22 @@
 						<div
 							class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 							<div class="thumb">
-								<a href="#"><img class="img-fluid" src="{%static 'img/blog/prev.jpg'%}" alt=""></a>
+								<a href="{%url 'blog:single' pid=prev1%}"><img class="img-fluid" src="{%static 'img/blog/prev.jpg'%}" alt=""></a>
 							</div>
 							<div class="arrow">
-								<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+								<a href="{%url 'blog:single' pid=prev1%}"><span class="lnr text-white lnr-arrow-left"></span></a>
 							</div>
 							<div class="detials">
 								<p>Prev Post</p>
-								<a href="#">
-									<h4>Space The Final Frontier</h4>
+								<a href="{%url 'blog:single' pid=prev1%}">
+									<h4>
+										
+										{{prev1}}
+
+
+
+
+									</h4>
 								</a>
 							</div>
 						</div>
@@ -86,8 +93,9 @@
 							class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 							<div class="detials">
 								<p>Next Post</p>
-								<a href="#">
-									<h4>21212121 
+								<a href="{%url 'blog:single' pid=next1%}">
+									<h4>
+										{{next1}}
 									
 									</h4>
 								</a>
@@ -96,7 +104,7 @@
 								<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
 							</div>
 							<div class="thumb">
-								<a href="#"><img class="img-fluid" src="{%static 'img/blog/next.jpg'%}" alt=""></a>
+								<a href="{%url 'blog:single' pid=next1%}"><img class="img-fluid" src="{%static 'img/blog/next.jpg'%}" alt=""></a>
 							</div>
 						</div>
 					</div>
