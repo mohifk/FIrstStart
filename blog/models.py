@@ -7,7 +7,7 @@ class category(models.Model):
     name=models.CharField(max_length=255)
     def __str__(self) -> str:
         return self.name
-class post(models.Model):
+class Post(models.Model):
     image=models.ImageField(upload_to='media/blog/',default='blog/defult.jpg')
     author = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     title=models.CharField(max_length=255)

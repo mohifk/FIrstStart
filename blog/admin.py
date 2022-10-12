@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import post,category
+from blog.models import Post,category
 #@admin.register(post)       # -----this or down
 class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'create_date'
@@ -11,5 +11,5 @@ class PostAdmin(admin.ModelAdmin):
     ordering=['-create_date']
     search_fields=['title','content']
 admin.site.register(category)
-admin.site.register(post,PostAdmin)     # ------ or this or up
+admin.site.register(Post,PostAdmin)     # ------ or this or up
 
