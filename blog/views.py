@@ -15,10 +15,14 @@ def blog_single(request,pid):
     post_=get_object_or_404(Post,pk=pid,status=1)
     post_.count_views+=1
     post_.save()
-    next1=Post.objects.get(pk=pid)
-    next1.id+=1
-    prev1=Post.objects.get(pk=pid)
-    prev1.id-=1
+    try:
+        next1=Post.objects.get(pk=pid+1)
+    except:
+        next1=Post.objects.get(pk=pid)
+    try:
+        prev1=Post.objects.get(pk=pid-1)
+    except:
+        prev1=Post.objects.get(pk=pid)
     context={'post':post_,'next1':next1,'prev1':prev1}
     return render(request,'blog/blog-single.html',context)
 
