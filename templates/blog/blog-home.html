@@ -96,7 +96,7 @@
 										<li><a href="#">
 											<!-- {{post.category.all|join:' , '}} -->
 											{% for cat in post.category.all %}
-												<a href="#">{{cat.name}}</a>{% if not forloop.last %},
+												<a href="{% url 'blog:category' cat_name=cat.name %}">{{cat.name}}</a>{% if not forloop.last %},
 											{% endif %} 
 											
 											{% endfor %}
