@@ -13,7 +13,6 @@ def blog_view(request,**kwargs):
     context={'posts':posts}                                  ## the means is evry where {%posts%} means posts
     return render(request,'blog/blog-home.html',context)
 
-
 def blog_single(request,pid):
     post_=get_object_or_404(Post,pk=pid,status=1)
     post_.count_views+=1
@@ -32,9 +31,11 @@ def blog_single(request,pid):
 def test(request):
     return render(request,'test.html')
 
-def blog_category(request,cat_name):
+def blog_search(request):
     posts=Post.objects.filter(status=1)
-    posts=posts.filter(category__name=cat_name)
+    if request.method == 'GET' :
+        if s:= request.GET.get('s'):
+            posts=posts.filter(content__contains=s)
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
 
