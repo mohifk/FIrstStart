@@ -23,7 +23,7 @@ def blog_view(request,**kwargs):
     return render(request,'blog/blog-home.html',context)
 
 def blog_single(request,pid):
-    post_=get_object_or_404(Post,pk=pid,status=1)
+    post_=get_object_or_404(Post,pk=pid,status=True)
     post_.count_views+=1
     post_.save()
     try:
