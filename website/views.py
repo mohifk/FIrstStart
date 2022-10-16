@@ -1,6 +1,5 @@
-from tkinter import N
 from django.shortcuts import render
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from website.forms import ContactForm, NameForm,NewsletterForm
 from website.models import Contact
 
@@ -43,6 +42,6 @@ def newsletter_view(request):
         form=NewsletterForm(request.POST)    
         if form.is_valid():
             form.save()
-            return HttpResponse('/')
+            return HttpResponseRedirect('/')
         else:
-            return HttpResponse('/')
+            return HttpResponseRedirect('/')
