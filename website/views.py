@@ -14,7 +14,7 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.add_message(request,messages.SUCCESS,'ok Dude your tiket submit SUCCESS')
+            messages.add_message(request,messages.SUCCESS,'OK Dude your tiket submit SUCCESS')
         else:
             messages.add_message(request,messages.ERROR,'Sorry Dude your tiket dident submit')
     form = ContactForm()
