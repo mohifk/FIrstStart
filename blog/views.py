@@ -44,9 +44,7 @@ def blog_single(request,pid):
         next1=posts[1]
         prev1=posts[0]
         prev1.title=''
-        p=''
-                  
-    
+        p=''                  
     context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n}
     return render(request,'blog/blog-single.html',context)
 
