@@ -23,17 +23,24 @@ def blog_view(request,**kwargs):
     return render(request,'blog/blog-home.html',context)
 
 def blog_single(request,pid):
+    posts=Post.objects.filter(status=1) 
     post_=get_object_or_404(Post,pk=pid,status=True)
     post_.count_views+=1
     post_.save()
-    try:
-        next1=Post.objects.get(pk=pid+1)
-    except:
-        next1=Post.objects.get(pk=pid)
-    try:
-        prev1=Post.objects.get(pk=pid-1)
-    except:
-        prev1=Post.objects.get(pk=pid)
+    if pid>1 and pid < len(posts)+1:
+        for i in range (1,len(posts)-1) :
+            if posts[i] == post_ :
+                next1=posts[i+1]
+                prev1=posts[i-1]
+            
+    elif pid==len(posts)+1 :
+        next1=posts[len(posts)-1] 
+        prev1=posts[len(posts)-2] 
+    elif pid == 1:
+        next1=posts[1]
+        prev1=posts[0]
+                  
+    
     context={'post':post_,'next1':next1,'prev1':prev1}
     return render(request,'blog/blog-single.html',context)
 
