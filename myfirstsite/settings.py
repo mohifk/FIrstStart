@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from re import T
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,9 +45,13 @@ INSTALLED_APPS = [
     'django_extensions',
     'website.apps.WebsiteConfig',
     'blog',
+    'robots',
 ]
-
+#site framwork
 SITE_ID = 2
+#robots
+ROBOTS_USE_HOST=True
+ROBOTS_USE_SITEMAP=True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
