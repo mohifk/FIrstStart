@@ -27,6 +27,8 @@ def blog_single(request,pid):
     post_=get_object_or_404(Post,pk=pid,status=True)
     post_.count_views+=1
     post_.save()
+    p='Prev Post'
+    n='Next Post'
     if pid>1 and pid < len(posts)+1:
         for i in range (1,len(posts)-1) :
             if posts[i] == post_ :
@@ -35,13 +37,17 @@ def blog_single(request,pid):
             
     elif pid==len(posts)+1 :
         next1=posts[len(posts)-1] 
+        next1.title=''
+        n=''
         prev1=posts[len(posts)-2] 
     elif pid == 1:
         next1=posts[1]
         prev1=posts[0]
+        prev1.title=''
+        p=''
                   
     
-    context={'post':post_,'next1':next1,'prev1':prev1}
+    context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n}
     return render(request,'blog/blog-single.html',context)
 
 def test(request):
