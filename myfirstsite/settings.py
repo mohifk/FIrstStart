@@ -50,8 +50,8 @@ INSTALLED_APPS = [
 #site framwork
 SITE_ID = 2
 #robots
-ROBOTS_USE_HOST=True
-ROBOTS_USE_SITEMAP=True
+ROBOTS_USE_HOST = True
+ROBOTS_USE_SITEMAP = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
