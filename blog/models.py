@@ -4,6 +4,8 @@ from tabnanny import verbose
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
+
 class category(models.Model):
     name=models.CharField(max_length=255)
     def __str__(self) -> str:
@@ -13,7 +15,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     title=models.CharField(max_length=255)
     content= models.TextField()
-    #tage=
+    tags=TaggableManager()
     category=models.ManyToManyField(category)
     count_views= models.IntegerField(default=0)
     status= models.BooleanField(default=False)
