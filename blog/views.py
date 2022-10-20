@@ -2,7 +2,7 @@ from itertools import count
 from django import views
 from django.utils import timezone
 from django.shortcuts import render,get_object_or_404
-from blog.models import Post
+from blog.models import Post,Comment
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 
 def blog_view(request,**kwargs):
@@ -29,6 +29,7 @@ def blog_single(request,pid):
     post_=get_object_or_404(Post,pk=pid,status=True)
     post_.count_views+=1
     post_.save()
+    comments=Comment.objects.filter(post=post_.id,approved=1)
     p='Prev Post'
     n='Next Post'
     if pid>1 and pid < len(posts)+1:
@@ -47,7 +48,7 @@ def blog_single(request,pid):
         prev1=posts[0]
         prev1.title=''
         p=''                  
-    context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n}
+    context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n,'comments':comments}
     return render(request,'blog/blog-single.html',context)
 
 def test(request):
