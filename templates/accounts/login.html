@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <p>{{msg}}</p>
+    {%if request.user.is_authenticated%}
+    <p>user is authenticated as : {{request.user.username}}</p>
+    {%else%}
+    <p>user not authenticated</p>
+    {%endif%}
 </body>
 </html>
