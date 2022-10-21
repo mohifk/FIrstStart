@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "taggit",
     'blog',
     'robots',
+    'accounts',
 ]
 #site framwork
 SITE_ID = 2
