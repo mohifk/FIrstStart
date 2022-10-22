@@ -7,5 +7,5 @@ urlpatterns = [
 
     path ('login/',login_view,name='login'),
     path ('logout/',logout_view,name='logout'),
-    path ('singup/',singup_view,name='singup'),
+    path ('signup/',signup_view,name='signup'),
 ]

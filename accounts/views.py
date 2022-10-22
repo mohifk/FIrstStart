@@ -42,5 +42,5 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-def singup_view(request):
-    return render(request,'accounts/singup.html')
+def signup_view(request):
+    return render(request,'accounts/signup.html')
