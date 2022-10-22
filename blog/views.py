@@ -6,6 +6,8 @@ from blog.models import Post,Comment
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 from blog.forms import CommentForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 def blog_view(request,**kwargs):
     posts=Post.objects.filter(publish_date__lte=timezone.now(),status=1) 
