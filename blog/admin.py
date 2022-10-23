@@ -7,7 +7,7 @@ class PostAdmin(SummernoteModelAdmin):
     empty_value_display= '-empty-'
     #fields=('title',)
     #exclude=('title',)
-    list_display=('title','author','count_views','status','publish_date')
+    list_display=('title','author','count_views','status','login_require','publish_date')
     list_filter=('status','author')
     ordering=['-create_date']
     search_fields=['title','content']

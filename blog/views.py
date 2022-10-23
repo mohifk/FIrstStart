@@ -6,6 +6,8 @@ from blog.models import Post,Comment
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 from blog.forms import CommentForm
 from django.contrib import messages
+from django.urls import reverse
+from django.http import HttpResponseRedirect 
 from django.contrib.auth.decorators import login_required
 
 
@@ -39,30 +41,57 @@ def blog_single(request,pid):
             messages.add_message(request,messages.ERROR,'Sorry Dude your Comment dident submit')
     posts=Post.objects.filter(status=1) 
     post_=get_object_or_404(Post,pk=pid,status=True)
-    post_.count_views+=1
-    post_.save()   
-    p='Prev Post'
-    n='Next Post'
-    if pid>1 and pid < len(posts)+1:
-        for i in range (1,len(posts)-1) :
-            if posts[i] == post_ :
-                next1=posts[i+1]
-                prev1=posts[i-1]           
-    elif pid==len(posts)+1 :
-        next1=posts[len(posts)-1] 
-        next1.title=''
-        n=''
-        prev1=posts[len(posts)-2] 
-    elif pid == 1:
-        next1=posts[1]
-        prev1=posts[0]
-        prev1.title=''
-        p=''          
-    comments=Comment.objects.filter(post=post_.id,approved=1)  
-    form= CommentForm()      
-    context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n,'comments':comments,'form':form}
-    return render(request,'blog/blog-single.html',context)
+    if not post_.login_require:
+        post_.count_views+=1
+        post_.save()   
+        p='Prev Post'
+        n='Next Post'
+        if pid>1 and pid < len(posts)+1:
+            for i in range (1,len(posts)-1) :
+                if posts[i] == post_ :
+                    next1=posts[i+1]
+                    prev1=posts[i-1]           
+        elif pid==len(posts)+1 :
+            next1=posts[len(posts)-1] 
+            next1.title=''
+            n=''
+            prev1=posts[len(posts)-2] 
+        elif pid == 1:
+            next1=posts[1]
+            prev1=posts[0]
+            prev1.title=''
+            p=''          
+        comments=Comment.objects.filter(post=post_.id,approved=1)  
+        form= CommentForm()      
+        context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n,'comments':comments,'form':form}
+        return render(request,'blog/blog-single.html',context)
+    elif not request.user.is_authenticated :
+        return HttpResponseRedirect(reverse('accounts:login'))
 
+    elif request.user.is_authenticated:
+        post_.count_views+=1
+        post_.save()   
+        p='Prev Post'
+        n='Next Post'
+        if pid>1 and pid < len(posts)+1:
+            for i in range (1,len(posts)-1) :
+                if posts[i] == post_ :
+                    next1=posts[i+1]
+                    prev1=posts[i-1]           
+        elif pid==len(posts)+1 :
+            next1=posts[len(posts)-1] 
+            next1.title=''
+            n=''
+            prev1=posts[len(posts)-2] 
+        elif pid == 1:
+            next1=posts[1]
+            prev1=posts[0]
+            prev1.title=''
+            p=''          
+        comments=Comment.objects.filter(post=post_.id,approved=1)  
+        form= CommentForm()      
+        context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n,'comments':comments,'form':form}
+        return render(request,'blog/blog-single.html',context)
 
 def test(request):
     return render(request,'test.html')
