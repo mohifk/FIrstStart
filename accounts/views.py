@@ -1,9 +1,10 @@
-from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib import messages
+from django.urls import reverse
+from django.http import HttpResponseRedirect 
 def login_view(request):
     # if request.user.is_authenticated:
     #     msg=f'user is authenticated as {request.user.username}'
@@ -53,8 +54,8 @@ def signup_view(request):
             if form.is_valid():
                 form.save()
                 messages.add_message(request,messages.SUCCESS,'OK Dude your signup succses please login')
-                #return reverse('accounts:login')
-                return redirect('/')
+                return HttpResponseRedirect(reverse('accounts:login'))
+                #return redirect('/')
         form = UserCreationForm()
         context={'form':form}
         return render(request,'accounts/signup.html',context)

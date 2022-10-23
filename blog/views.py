@@ -28,6 +28,7 @@ def blog_view(request,**kwargs):
     context={'posts':posts}                                  ## the means is evry where {%posts%} means posts
     return render(request,'blog/blog-home.html',context)
 
+
 def blog_single(request,pid):
     if request.method == 'POST' :
         form = CommentForm(request.POST)
@@ -39,16 +40,14 @@ def blog_single(request,pid):
     posts=Post.objects.filter(status=1) 
     post_=get_object_or_404(Post,pk=pid,status=True)
     post_.count_views+=1
-    post_.save()
-    
+    post_.save()   
     p='Prev Post'
     n='Next Post'
     if pid>1 and pid < len(posts)+1:
         for i in range (1,len(posts)-1) :
             if posts[i] == post_ :
                 next1=posts[i+1]
-                prev1=posts[i-1]
-            
+                prev1=posts[i-1]           
     elif pid==len(posts)+1 :
         next1=posts[len(posts)-1] 
         next1.title=''
@@ -63,6 +62,7 @@ def blog_single(request,pid):
     form= CommentForm()      
     context={'post':post_,'next1':next1,'prev1':prev1,'p':p,'n':n,'comments':comments,'form':form}
     return render(request,'blog/blog-single.html',context)
+
 
 def test(request):
     return render(request,'test.html')
