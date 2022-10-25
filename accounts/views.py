@@ -7,26 +7,33 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .forms import SignUpForm
 
+from django.contrib.auth.models import User
+
+
 def login_view(request):
     if not request.user.is_authenticated:    
         if request.method == 'POST' :
             form=AuthenticationForm(request=request,data=request.POST)
             if form.is_valid():
-                email=form.cleaned_data.get('email')
-                username=form.cleaned_data.get('username')  
-                password=request.POST['password']
-                user=authenticate(request,username=username,password=password,email=email)
-            if user is not None:
-                login(request,user)
-                messages.add_message(request,messages.SUCCESS,'OK Dude you are login')
-                return redirect('/')
+                try :
+                    username=form.cleaned_data.get('username') 
+                    password=request.POST['password']
+                    u=User.objects.get(email=username).username
+                    user=authenticate(request,username=u,password=password)
+                except:
+                    username=form.cleaned_data.get('username')  
+                    password=request.POST['password']
+                    user=authenticate(request,username=username,password=password)
+                if user is not None:
+                    login(request,user)
+                    messages.add_message(request,messages.SUCCESS,'Ok Dude you Login Now')
+                    return redirect('/')
 
         form=AuthenticationForm()
         context={'form':form}        
         return render(request,'accounts/login.html',context)
     else:
         return redirect('/')
-
 
 
 @login_required
