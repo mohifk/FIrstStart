@@ -1,6 +1,6 @@
 from myfirstsite.settings import *
 from django.core import mail
-mail.send_mail('subject','message','mohi.fk9@gmail.com',['mohi.fk9@gmail.com'])
+
 
 SECRET_KEY = 'django-insecure-znc9ds3cy+5$4ow))bk_3p^1@o=sz0=+cvr)u24(2o7z))ych)'
 
