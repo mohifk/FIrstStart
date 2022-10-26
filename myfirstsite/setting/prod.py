@@ -32,3 +32,4 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 CSRF_COOKIE_SECURE=True
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] 
