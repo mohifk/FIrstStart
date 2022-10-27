@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from website.forms import ContactForm, NameForm,NewsletterForm
-from website.models import Contact
+
 from django.contrib import messages
 from django.shortcuts import redirect
 def view_404(request, exception=None):
