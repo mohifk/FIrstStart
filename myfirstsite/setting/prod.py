@@ -5,8 +5,8 @@ from django.core import mail
 SECRET_KEY = 'django-insecure-znc9ds3cy+5$4ow))bk_3p^1@o=sz0=+cvr)u24(2o7z))ych)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
-DEBUG = True
+DEBUG = False
+#DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 

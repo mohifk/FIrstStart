@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect 
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import redirect
 
 def blog_view(request,**kwargs):
     posts=Post.objects.filter(publish_date__lte=timezone.now(),status=1) 
@@ -103,4 +103,5 @@ def blog_search(request):
             posts=posts.filter(content__contains=s)
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
+
 

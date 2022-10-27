@@ -26,6 +26,8 @@ sitemaps={
     'static':StaticViewSitemap,
     'blog':BlogSitemap
 }
+handler404 = 'website.views.view_404'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
