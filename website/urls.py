@@ -13,3 +13,6 @@ urlpatterns = [
     path ('test/',test_view,name='test'),
     path ('newsletter_view/',newsletter_view,name='newsletter'),
 ]
+
+
+# handler404 = 'my_app.views.handler404'

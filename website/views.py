@@ -12,9 +12,9 @@ def view_404(request, exception=None):
     # you can use the name of url or just the plain link
     return redirect('/') # or redirect('name-of-index-url')
 def Home_page_view(request):
-    return render(request,'.\website_temp\index.html')
+    return render(request,'website_temp/index.html')
 def about_view(request):
-    return render(request ,'.\website_temp\\about.html')
+    return render(request ,'website_temp/about.html')
 
 
 def contact_view(request):
@@ -29,11 +29,11 @@ def contact_view(request):
         else:
             messages.add_message(request,messages.ERROR,'Sorry Dude your tiket dident submit')
     form = ContactForm()
-    return render(request,'.\website_temp\contact.html',{'form':form})
+    return render(request,'website_temp/contact.html',{'form':form})
 
     
 def elements_view(request):
-    return render(request,'.\website_temp\elements.html')
+    return render(request,'website_temp/elements.html')
 
 
 def test_view(request):
@@ -57,3 +57,6 @@ def newsletter_view(request):
             return HttpResponseRedirect('/')
         else:
             return HttpResponseRedirect('/')
+
+
+
