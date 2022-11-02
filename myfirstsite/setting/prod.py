@@ -5,8 +5,8 @@ from django.core import mail
 SECRET_KEY = 'django-insecure-znc9ds3cy+5$4ow))bk_3p^1@o=sz0=+cvr)u24(2o7z))ych)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = False
 DEBUG = False
-#DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -18,6 +18,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+
+
 
 
 STATIC_Root=BASE_DIR/'static'
@@ -36,7 +40,7 @@ STATICFILES_FINDERS = (
 )
 CSRF_COOKIE_SECURE=True
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend'] 
-
+X_FRAME_OPTIONS = 'SAMEORIGIN' 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'mohi.fk9@gmail.com'
